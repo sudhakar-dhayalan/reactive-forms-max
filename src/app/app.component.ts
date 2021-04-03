@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { CustomValidators } from './customValidators';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,10 @@ export class AppComponent implements OnInit {
   genders = ['male', 'female'];
   signupForm: FormGroup;
   forbiddenNamesArr = ["Andy", "Sam"]
+
+  projectForm: FormGroup;
+  forbiddenProjectName = ["Test"];
+  projectStatusList = ["Stable", "Critical", "Finished"];
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -28,7 +33,17 @@ export class AppComponent implements OnInit {
 
     this.signupForm.statusChanges.subscribe((status) => {
       console.log(status);
-    })
+    });
+
+    this.projectForm = new FormGroup({
+      'projectname': new FormControl(null, [Validators.required, CustomValidators.invalidProjectName], CustomValidators.asyncInvaidProjectName),
+      'email': new FormControl(null, [Validators.required, Validators.email]),
+      'projectstatus': new FormControl('critical')
+    });
+  }
+
+  submitProjectForm() {
+    console.log(this.projectForm);  
   }
 
   onSubmit() {
