@@ -11,3 +11,7 @@ input.ng-invalid.ng-touched {
     color: red;
     font-size: 1rem;
 }
+
+.row {
+    margin-top: 5rem;
+}

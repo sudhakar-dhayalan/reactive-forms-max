@@ -1,0 +1,25 @@
+<h2>Project Form</h2>
+<form [formGroup]="projectForm" (ngSubmit)="submitProjectForm()">
+    <div class="form-group">
+        <label for="projectname">Enter your project name</label>
+        <input type="text" name="projectname" class="form-control" formControlName="projectname">{{!projectForm.get('projectname').valid && projectForm.get('projectname').touched}}
+        <span *ngIf="!projectForm.get('projectname').valid && projectForm.get('projectname').touched" class="help-block">
+                        <!-- Please enter the project name -->
+                        <span *ngIf="projectForm.get('projectname')?.errors?.required">Please enter the project name</span>
+        <span *ngIf="projectForm.get('projectname')?.errorsinvalidProjectName">Please enter a valid project name</span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="email">Enter your mail Id</label>
+        <input type="text" name="email" class="form-control" formControlName="email">
+    </div>
+    <div class="form-group">
+        <label for="projectstatus">Enter the project status</label>
+        <select name="projectstatus" class="form-control" formControlName="projectstatus">
+                            <option value="stable">Stable</option>
+                            <option value="critical">Critical</option>
+                            <option value="finished">Finished</option>
+                    </select>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>

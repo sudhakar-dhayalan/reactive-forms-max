@@ -1,0 +1,11 @@
+<h2>Add the topics</h2>
+<form [formGroup]="topicsForm">
+    <input type="text" (keyup.enter)="addTopics(inputField)" #inputField class="form-control">
+    <br>
+    <ul class="list-group">
+        <ng-container *ngFor="let topic of topics.controls">
+            <li class="list-group-item">{{topic.value}}</li>
+        </ng-container>
+    </ul>
+    <br><br>
+</form>
